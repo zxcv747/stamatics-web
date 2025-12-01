@@ -1,17 +1,14 @@
 // src/App.jsx
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import bgImage from "./assets/home_background.jpg";
 import logo from "./assets/logo.png";
 import "./App.css";
 
 function App() {
   const aboutRef = useRef(null);
-  const heroRef = useRef(null);
-
-  const [showAbout, setShowAbout] = useState(false);
   const autoScrollingRef = useRef(false);
 
-  const smoothScrollTo = (targetY, duration = 400) => {
+  const smoothScrollTo = (targetY, duration = 800) => {
     const startY = window.scrollY;
     const distance = targetY - startY;
     let startTime = null;
@@ -24,7 +21,7 @@ function App() {
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
-      let progress = Math.min(elapsed / duration, 1);
+      const progress = Math.min(elapsed / duration, 1);
       const eased = easeInOutQuad(progress);
 
       window.scrollTo(0, startY + distance * eased);
@@ -43,39 +40,31 @@ function App() {
     if (!aboutRef.current) return;
     const targetY =
       aboutRef.current.getBoundingClientRect().top + window.scrollY;
-    smoothScrollTo(targetY, 400); // 1s smooth scroll
+    smoothScrollTo(targetY, 800); // 0.8s smooth scroll
   };
 
   const handleAboutClick = (e) => {
     e.preventDefault();
-    setShowAbout(true);
     scrollToAbout();
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (autoScrollingRef.current) return; // ignore during auto scroll
+      if (autoScrollingRef.current) return;
       if (!aboutRef.current) return;
 
       const rect = aboutRef.current.getBoundingClientRect();
       const triggerPoint = window.innerHeight * 0.65;
 
+      // When the About section is close to entering view, snap smoothly to it
       if (rect.top < triggerPoint) {
-        if (!showAbout) {
-          setShowAbout(true);
-          scrollToAbout();
-        }
-      } else {
-        if (showAbout) {
-          setShowAbout(false);
-        }
+        scrollToAbout();
       }
     };
 
-    handleScroll(); // run once on mount
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [showAbout]);
+  }, []);
 
   return (
     <div className="page-root">
@@ -124,10 +113,7 @@ function App() {
         </header>
 
         {/* MAIN HERO CONTENT (TOP SECTION) */}
-        <main
-          className={`hero-content ${showAbout ? "hero-hidden" : ""}`}
-          ref={heroRef}
-        >
+        <main className="hero-content">
           {/* LEFT HERO TEXT */}
           <section className="hero-left">
             <h1 className="hero-title">Stamatics IIT Kanpur</h1>
@@ -204,7 +190,7 @@ function App() {
 
       {/* ABOUT US SECTION (FULL-PAGE BELOW HERO) */}
       <section
-        className={`about-section ${showAbout ? "about-visible" : ""}`}
+        className="about-section"
         id="about"
         ref={aboutRef}
       >
