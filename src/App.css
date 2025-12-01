@@ -247,7 +247,7 @@ body {
   background: var(--card-bg);
   border-radius: 12px;
   padding: 28px 32px;
-  max-width: 620px; 
+  max-width: 1000px; 
   width: 100%;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
 }
