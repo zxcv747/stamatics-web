@@ -81,20 +81,11 @@ body {
   gap: 10px;
 }
 
-.logo-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ffffff, #dcdcdc);
-  position: relative;
-}
-
-.logo-mark::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: inherit;
-  background: #1b1b1f;
+.logo-image {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 .logo-text {
@@ -119,10 +110,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px; /* space between search bar and nav links */
+  gap: 14px; /* spacing between search bar and nav links */
 }
 
-/* SEARCH BAR (new) */
+/* SEARCH BAR */
 
 .nav-search {
   display: flex;
@@ -195,9 +186,8 @@ body {
   min-height: 100vh;
 
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-
-  gap: 500px; /* pushes blogs far to the right */
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr); /* right wider */
+  gap: 120px;
   align-items: center;
 }
 
@@ -235,7 +225,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* RIGHT CARD – LATEST BLOGS (made wider) */
+/* RIGHT CARD – LATEST BLOGS (wide panel) */
 
 .hero-right {
   display: flex;
@@ -247,8 +237,10 @@ body {
   background: var(--card-bg);
   border-radius: 12px;
   padding: 28px 32px;
-  max-width: 1000px; 
+
+  max-width: 800px; /* wide rectangle */
   width: 100%;
+
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
 }
 
@@ -344,6 +336,7 @@ body {
 
   .hero-right {
     justify-content: flex-start;
+    padding-right: 0;
   }
 
   .newsletter-card {
