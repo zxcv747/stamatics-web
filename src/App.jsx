@@ -25,7 +25,7 @@ function App() {
 
           {/* RIGHT NAVIGATION LINKS + HOVER DROPDOWN */}
           <nav className="nav-links top-right-nav">
-            <a href="#who">Who We Are</a>
+            <a href="#about">Who We Are</a>
 
             {/* COMPETITIONS DROPDOWN */}
             <div className="dropdown">
@@ -46,10 +46,10 @@ function App() {
         </div>
       </header>
 
-      {/* MAIN HERO CONTENT */}
+      {/* MAIN HERO CONTENT (TOP SECTION) */}
       <main className="hero-content">
         {/* LEFT HERO TEXT */}
-        <section className="hero-left" id="who">
+        <section className="hero-left">
           <h1 className="hero-title">Stamatics IIT Kanpur</h1>
           <p className="hero-subtitle">
             The destination for students who seek to explore Mathematics,
@@ -115,6 +115,45 @@ function App() {
           </div>
         </section>
       </main>
+
+      {/* ABOUT US SECTION (SCROLL DOWN) */}
+      <section className="about-section" id="about">
+        <div className="about-inner">
+          <h2 className="about-title">About Us</h2>
+          <p className="about-text">
+            Stamatics is the official student group at IIT Kanpur dedicated to
+            the love of Mathematics and Statistics. We organise problem-solving
+            contests, talks, workshops, and learning sessions to help students
+            explore the beauty of mathematical thinking beyond the classroom.
+          </p>
+
+          <div className="about-grid">
+            <div className="about-card">
+              <h3>What We Do</h3>
+              <p>
+                From Integration Bee and Mathematica to Mathemania, we design
+                events that challenge, inspire, and build a strong problem-solving
+                culture on campus.
+              </p>
+            </div>
+            <div className="about-card">
+              <h3>Who We Are</h3>
+              <p>
+                A community of students who enjoy puzzles, proofs, probability,
+                and everything in between—open to enthusiasts from all
+                departments and years.
+              </p>
+            </div>
+            <div className="about-card">
+              <h3>Why Join</h3>
+              <p>
+                Meet like-minded peers, compete in challenging events, learn new
+                ideas, and contribute to a growing math community at IIT Kanpur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* SCROLL ARROW */}
       <div className="scroll-indicator">
