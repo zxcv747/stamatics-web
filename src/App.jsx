@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const aboutRef = useRef(null);
   const autoScrollingRef = useRef(false);
+  const hasSnappedRef = useRef(false); // prevent repeated snapping
 
   const smoothScrollTo = (targetY, duration = 800) => {
     const startY = window.scrollY;
@@ -45,6 +46,7 @@ function App() {
 
   const handleAboutClick = (e) => {
     e.preventDefault();
+    hasSnappedRef.current = true; // we've already snapped
     scrollToAbout();
   };
 
@@ -56,8 +58,9 @@ function App() {
       const rect = aboutRef.current.getBoundingClientRect();
       const triggerPoint = window.innerHeight * 0.65;
 
-      // When the About section is close to entering view, snap smoothly to it
-      if (rect.top < triggerPoint) {
+      // Only auto-snap ONCE when scrolling down the first time
+      if (!hasSnappedRef.current && rect.top < triggerPoint) {
+        hasSnappedRef.current = true;
         scrollToAbout();
       }
     };
