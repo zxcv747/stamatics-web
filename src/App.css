@@ -130,45 +130,25 @@ body {
   position: relative;
 }
 
-/* DROPDOWN MENU - HIDDEN BASE STATE */
+/* DROPDOWN MENU – NO FADE, INSTANT SHOW/HIDE */
 .dropdown-menu {
   position: absolute;
-  top: 110%;         /* directly below label */
-  left: 0;           /* aligned to the left edge of "Competitions" text */
+  top: 110%;  /* directly below “Competitions” */
+  left: 0;    /* aligned under label */
   background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(12px);
   border-radius: 8px;
   padding: 10px 0;
-  display: flex;
+  display: none;              /* hidden by default */
   flex-direction: column;
   width: 200px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
   z-index: 30;
-
-  opacity: 0;
-  transform: translateY(8px);
-  visibility: hidden;
-  pointer-events: none;
-
-  /* 1.5s fade-out for hidden state */
-  transition:
-    opacity 1.5s ease,
-    transform 0.3s ease,
-    visibility 0s linear 1.5s;
 }
 
-/* SHOW + QUICK FADE-IN ON HOVER */
+/* SHOW INSTANTLY ON HOVER */
 .dropdown:hover .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  pointer-events: auto;
-
-  /* faster fade-in */
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0s;
+  display: flex;
 }
 
 /* DROPDOWN LINKS */
@@ -177,7 +157,7 @@ body {
   padding: 10px 18px;
   color: var(--text-main);
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: background 0.15s ease;
 }
 
 .dropdown-menu a:hover {
