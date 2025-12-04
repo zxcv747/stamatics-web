@@ -56,7 +56,7 @@ function Navbar() {
           </NavLink>
 
           {/* OUR TEAM (placeholder for future page) */}
-          <NavLink to="/" className={navLinkClass}>
+          <NavLink to="/team" className={navLinkClass}>
             Our Team
           </NavLink>
 
