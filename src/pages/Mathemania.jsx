@@ -44,29 +44,17 @@ function Mathemania() {
       "https://script.google.com/macros/s/AKfycbwv8yFFWikTCVSBpNaGtnYQEfCE_vmEK_J8cF1T_aF2avROc0y5Lfhak_sSKCx6FlQuzA/exec";
 
     try {
-      const res = await fetch(GOOGLE_SCRIPT_URL, {
+      // Send data as plain text JSON with no-cors to avoid CORS/preflight issues
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "text/plain;charset=utf-8"
         },
         body: JSON.stringify(formData)
       });
 
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        data = null;
-      }
-
-      if (!res.ok || !data || data.result !== "success") {
-        alert(
-          (data && data.error) ||
-            "There was a problem submitting your registration. Please try again."
-        );
-        return;
-      }
-
+      // We can't read the response in no-cors mode, so assume success if no error
       alert("Registration submitted! Your response has been recorded.");
 
       setFormData({
@@ -109,7 +97,14 @@ function Mathemania() {
           <div className="mathemania-card">
             <h2 className="mathemania-card-title">Event Overview</h2>
             <p className="mathemania-text">
-              Mathemania is an engaging team-based mathematics competition designed to challenge participants through a curated set of eight high-level problems drawn from diverse areas of mathematics. The event encourages collaborative problem-solving, strategic thinking, and rigorous reasoning under time constraints. Each team works together to complete the full question set, applying logic, geometry, algebra, number theory, and inequality techniques to arrive at correct solutions.
+              Mathemania is an engaging team-based mathematics competition
+              designed to challenge participants through a curated set of eight
+              high-level problems drawn from diverse areas of mathematics. The
+              event encourages collaborative problem-solving, strategic
+              thinking, and rigorous reasoning under time constraints. Each team
+              works together to complete the full question set, applying logic,
+              geometry, algebra, number theory, and inequality techniques to
+              arrive at correct solutions.
             </p>
 
             <h2 className="mathemania-card-title mathemania-subheading">
@@ -133,9 +128,9 @@ function Mathemania() {
                 penalties or disqualification.
               </li>
               <li>
-                All electronic devices must be submitted to an invigilator before
-                the event begins. Any use of such devices during the competition
-                results in immediate disqualification.
+                All electronic devices must be submitted to an invigilator
+                before the event begins. Any use of such devices during the
+                competition results in immediate disqualification.
               </li>
             </ul>
 
